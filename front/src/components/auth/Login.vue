@@ -45,11 +45,9 @@ export default {
           username : this.email,
           password: this.password
         }
-        this.$http.post('http://localhost:8000/oauth/token' , data , {
-
-        })
+        this.$http.post('http://localhost:8000/oauth/token' , data)
         .then(res=>{
-          console.log(res);
+          this.$auth.setToken(res.body.access_token , res.body.expires_in + Date.now())
         }).catch(err=>{
           console.log(err);
         });
