@@ -14,12 +14,14 @@
             <form>
             <input type="text"  v-model="email" id="login" class="fadeIn second" name="login" placeholder="login">
             <input type="text" v-model="password" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+            <input type="button" @click="login()" class="fadeIn fourth" value="Log In">
+            <!-- <button @click="test()" class="fadeIn fourth">Log In</button> -->
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
             <a class="underlineHover" href="#">Forgot Password?</a>
+            <router-link to="/register">Register</router-link>
             </div>
 
         </div>
@@ -33,6 +35,33 @@ export default {
             email: '',
             password: ''
         }
+    },
+    methods: {
+      login(){
+        let data = {
+          client_id : 2,
+          client_secret : '6qtsLx0ljMug709J01f703xIp6OWroIUvzgfAVT2',
+          grant_type : 'password',
+          username : this.email,
+          password: this.password
+        }
+        this.$http.post('http://localhost:8000/oauth/token' , data , {
+
+        })
+        .then(res=>{
+          console.log(res);
+        }).catch(err=>{
+          console.log(err);
+        });
+      },
+      test1(){
+        axios.get('http://localhost:8000/api/test')
+        .then(res=>{
+          console.log(res);
+        }).catch(err=>{
+          console.log(err);
+        });
+      }
     },
 }
 </script>
