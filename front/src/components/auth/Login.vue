@@ -25,7 +25,7 @@
             </div>
 
         </div>
-    
+
     </div>
 </template>
 <script>
@@ -43,20 +43,15 @@ export default {
           client_secret : '6qtsLx0ljMug709J01f703xIp6OWroIUvzgfAVT2',
           grant_type : 'password',
           username : this.email,
-          password: this.password
+          password: this.password,
+
         }
-        this.$http.post('http://localhost:8000/oauth/token' , data)
-        .then(res=>{
-          this.$auth.setToken(res.body.access_token , res.body.expires_in + Date.now());
-          this.$router.push('/feed');
-        }).catch(err=>{
-          console.log(err);
-        });
-      },
-      test1(){
-        axios.get('http://localhost:8000/api/test')
+
+        axios.post('/oauth/token' , data)
         .then(res=>{
           console.log(res);
+          //this.$auth.setToken(res.body.access_token , res.body.expires_in + Date.now());
+          //this.$router.push('/feed');
         }).catch(err=>{
           console.log(err);
         });
@@ -65,7 +60,7 @@ export default {
 }
 </script>
 <style lang="">
-    
+
 /* BASIC */
 
 html {
@@ -90,7 +85,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px; 
+  margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
 
@@ -101,7 +96,7 @@ h2 {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -322,7 +317,7 @@ input[type=text]:placeholder {
 
 *:focus {
     outline: none;
-} 
+}
 
 #icon {
   width:60%;

@@ -17,11 +17,18 @@ Vue.use(Auth);
 
 
 //define baseUrl in http
-Vue.http.options.root = 'http://localhost:8000';
-Vue.http.headers.common['Authorization'] = 'Bearer '+ Vue.auth.getToken();
+// Vue.http.options.root = 'http://localhost:8000';
+// Vue.http.headers.common['Authorization'] = 'Bearer '+ Vue.auth.getToken();
 
 //define baseUrl in axios
 axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.headers.common['Authorization'] = 'Bearer '+ Vue.auth.getToken();
+/*axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
+axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length'; */
+// axios.defaults.withCredentials = false;
 
 
 
