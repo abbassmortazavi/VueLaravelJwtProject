@@ -1,16 +1,12 @@
 <template>
-    <div>
-         <h1>Feed Page...</h1>
-        <product></product>
-    </div>
+  <div class="container">
+    <h1>Feed</h1>
+    <Products/>
+  </div>
 </template>
 <script>
-import Product from './product/Products.vue';
+import Products from "./product/Products";
 export default {
-    components:{
-        Product
-    }
-    
-  
+  components: {Products}
 }
 </script>

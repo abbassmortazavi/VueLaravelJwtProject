@@ -4,7 +4,7 @@ export default function(Vue){
             localStorage.setItem('token' , token);
             localStorage.setItem('expiration' , expiration);
         },
-        getToken() {
+        getToken(){
             let token = localStorage.getItem('token');
             let expiration = localStorage.getItem('expiration');
 
@@ -18,11 +18,11 @@ export default function(Vue){
                 return token;
             }
         },
-        destroyToken: ()=>{
+        destroyToken(){
             localStorage.removeItem('token');
             localStorage.removeItem('expiration');
         },
-        isAuthenticated() {
+        isAuthenticated(){
             if(this.getToken())
                     return true;
                 else

@@ -47,11 +47,11 @@ export default {
 
         }
 
-        axios.post('/oauth/token' , data)
+        this.$http.post('oauth/token' , data)
         .then(res=>{
           console.log(res);
-          //this.$auth.setToken(res.body.access_token , res.body.expires_in + Date.now());
-          //this.$router.push('/feed');
+          this.$auth.setToken(res.body.access_token , res.body.expires_in + Date.now());
+          this.$router.push('/feed');
         }).catch(err=>{
           console.log(err);
         });

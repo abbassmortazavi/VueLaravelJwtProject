@@ -1,14 +1,12 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="(product , index) in products" :key="product.id">
-                {{ product.name }}|| {{ product.price }}
-            </li>
-        </ul>
+    <div class="row">
+        <Product v-for="product in products" :product="product"/>
     </div>
 </template>
 <script>
+import Product from "./product.vue";
 export default {
+  components:{Product},
     data() {
         return {
             products : []
@@ -18,16 +16,16 @@ export default {
         getProducts(){
             axios.get('/api/products')
             .then(res=>{
-                console.log(res);
+              this.products = res.data;
             }).catch(err=>{
                 console.log(err);
             });
         }
     },
     created() {
-        axios.get('api/products')
+        this.$http.get('api/products')
         .then(res=>{
-            this.products = res.data;
+            this.products = res.body;
         });
     },
     mounted() {
