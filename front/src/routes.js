@@ -29,7 +29,9 @@ const router = new VueRouter({
                 forAuth: true
             }
         },
-    ]
+    ],
+  mode:"history"
+  // linkActiveClass: 'active'
 });
 
 export default router;
