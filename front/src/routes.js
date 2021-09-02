@@ -29,6 +29,14 @@ const router = new VueRouter({
                 forAuth: true
             }
         },
+        {
+          path: '/create/products',
+          component: require('./components/product/Create.vue').default,
+          meta: {
+            forAuth: true
+          },
+          name: 'Create'
+        },
     ],
   mode:"history"
   // linkActiveClass: 'active'
