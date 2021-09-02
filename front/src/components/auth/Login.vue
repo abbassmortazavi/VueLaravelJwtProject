@@ -40,7 +40,7 @@ export default {
       login(){
         let data = {
           client_id : 2,
-          client_secret : '6qtsLx0ljMug709J01f703xIp6OWroIUvzgfAVT2',
+          client_secret : 'PyOFvDk427DfMg6ELZAv8N2iEuHjpGmQE8RRRYaC',
           grant_type : 'password',
           username : this.email,
           password: this.password,

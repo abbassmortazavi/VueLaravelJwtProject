@@ -56,8 +56,20 @@ export default {
       isAuth: false
     }
   },
+  methods:{
+    setAuthenticatedUser(){
+      this.$http.get('api/user')
+      .then(res=>{
+        this.$auth.setAuthenticatedUser(res.body);
+        console.log(this.$auth.getAuthenticatedUser());
+      }).catch(err=>{
+        console.log(err);
+      });
+    }
+  },
   created() {
     this.isAuth = this.$auth.isAuthenticated();
+    this.setAuthenticatedUser();
   }
 }
 </script>
