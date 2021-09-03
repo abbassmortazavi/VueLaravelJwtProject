@@ -1,5 +1,4 @@
 <template>
-
        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">Navbar scroll</a>
@@ -24,6 +23,13 @@
                   </li>
                   <li class="nav-item" v-if="isAuth">
                     <a class="nav-link active" aria-current="page" href="#">
+                      <router-link to="/create/products">
+                        Create
+                      </router-link>
+                    </a>
+                  </li>
+                  <li class="nav-item" v-if="isAuth">
+                    <a class="nav-link active" aria-current="page" href="#">
                       <router-link to="/logout">
                         Logout
                       </router-link>
@@ -36,8 +42,6 @@
                         </router-link>
                       </a>
                   </li>
-
-
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -46,8 +50,6 @@
                 </div>
             </div>
         </nav>
-
-
 </template>
 <script>
 export default {

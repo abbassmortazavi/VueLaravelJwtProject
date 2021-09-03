@@ -3,7 +3,8 @@ import App from './App.vue'
 import Router from './routes.js'
 import VueResource from 'vue-resource'
 import Auth from './packages/auth/Auth.js';
-
+import swal from 'sweetalert';
+window.Swal = swal;
 
 //load axios
 window.axios = require('axios');

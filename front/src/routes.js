@@ -37,6 +37,14 @@ const router = new VueRouter({
           },
           name: 'Create'
         },
+      {
+        path: '/update/:product/edit',
+        component: require('./components/product/Update.vue').default,
+        meta: {
+          forAuth: true
+        },
+        name: 'Update'
+      },
     ],
   mode:"history"
   // linkActiveClass: 'active'

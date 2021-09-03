@@ -21,5 +21,6 @@ Route::get('/user' , function (Request $request){
 })->middleware('auth:api');
 Route::group(['middleware'=>'auth:api'] ,function(){
     Route::resource('products' , 'ProductController');
+    Route::post('deleteProduct' , 'ProductController@deleteProduct');
 });
 
