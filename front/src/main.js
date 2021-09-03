@@ -4,6 +4,9 @@ import Router from './routes.js'
 import VueResource from 'vue-resource'
 import Auth from './packages/auth/Auth.js';
 import swal from 'sweetalert';
+import VeeValidate from 'vee-validate';
+
+
 window.Swal = swal;
 
 //load axios
@@ -15,7 +18,7 @@ window.axios = require('axios');
 //load vueResource
 Vue.use(VueResource);
 Vue.use(Auth);
-
+Vue.use(VeeValidate);
 
 //define baseUrl in http
 Vue.http.options.root = 'http://localhost:8000';

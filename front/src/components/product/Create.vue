@@ -7,11 +7,18 @@
             <h5 class="card-title">Create Product</h5>
             <div class="form-group">
               <label for="name">Name :</label>
-              <input type="text" name="name" v-model="product.name" id="name" class="form-control">
+              <input type="text" name="name" v-model="product.name" id="name" class="form-control"
+                     autofocus
+              v-validate="'required'"
+              >
+              <div class="alert alert-danger" v-show="errors.has('name')">{{ errors.first('name') }}</div>
             </div>
             <div class="form-group">
               <label for="Number">Number :</label>
-              <input type="text" name="price" v-model="product.price" id="number" class="form-control">
+              <input type="text" name="price" v-model="product.price" id="number" class="form-control"
+              v-validate="'max_value:30'"
+              >
+              <div class="alert alert-danger" v-show="errors.has('price')">{{ errors.first('price') }}</div>
             </div>
             <div class="form-group">
               <label for="description">Number :</label>

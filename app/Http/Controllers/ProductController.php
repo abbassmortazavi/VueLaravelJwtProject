@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +43,10 @@ class ProductController extends Controller
     }
     public function show($id)
     {
-        return response()->json(Product::find($id));
+        $product = Product::find($id);
+        if ($product)
+            return response()->json($product);
+
+        return response()->json(['error'=>'product not found...'],404);
     }
 }

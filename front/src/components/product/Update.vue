@@ -47,6 +47,7 @@ export default {
        this.product = res.body;
      }).catch(err=>{
        console.log(err);
+        swal(`${err.status}`, err.body.error, "error");
       });
    }
   },
