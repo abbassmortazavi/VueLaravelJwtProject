@@ -5,26 +5,35 @@
           <img src="" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">Create Product</h5>
-            <div class="form-group">
-              <label for="name">Name :</label>
-              <input type="text" name="name" v-model="product.name" id="name" class="form-control"
-                     autofocus
-              v-validate="'required'"
-              >
-              <div class="alert alert-danger" v-show="errors.has('name')">{{ errors.first('name') }}</div>
-            </div>
-            <div class="form-group">
-              <label for="Number">Number :</label>
-              <input type="text" name="price" v-model="product.price" id="number" class="form-control"
-              v-validate="'max_value:30'"
-              >
-              <div class="alert alert-danger" v-show="errors.has('price')">{{ errors.first('price') }}</div>
-            </div>
-            <div class="form-group">
-              <label for="description">Number :</label>
-              <textarea name="description" v-model="product.description" id="description" cols="30" rows="10"></textarea>
-            </div>
-            <button @click="insertProduct" class="btn btn-success float-right" v-show="product.name && product.description && product.price">Create</button>
+            <form @submit.prevent="insertProduct">
+              <div class="form-group">
+                <label for="name">Name :</label>
+                <input type="text" name="name" v-model="product.name" id="name" class="form-control"
+                       v-validate="'required'"
+                >
+                <div class="alert alert-danger" v-show="errors.has('name')">{{ errors.first('name') }}</div>
+              </div>
+              <div class="form-group">
+                <label for="file">File :</label>
+                <input type="file" @change="uploadImage" name="name"  id="file" class="form-control">
+
+              </div>
+              <div class="form-group">
+                <label for="Number">Number :</label>
+                <input type="text" name="price" v-model="product.price" id="number" class="form-control"
+                       v-validate="'max_value:30|min_value:0'"
+                >
+                <div class="alert alert-danger" v-show="errors.has('price')">{{ errors.first('price') }}</div>
+              </div>
+              <div class="form-group">
+                <label for="description">Number :</label>
+                <textarea name="description" v-model="product.description" id="description" cols="30" rows="10"
+                v-validate="'required'"
+                ></textarea>
+                <div class="alert alert-danger" v-show="errors.has('description')">{{ errors.first('description') }}</div>
+              </div>
+              <input type="submit" class="btn btn-success float-right" value="Create"/>
+            </form>
           </div>
         </div>
       </div>
@@ -39,18 +48,33 @@ export default {
       product:{
         name: '',
         price: '',
-        description: ''
+        description: '',
+        img: ''
       }
     }
   },
   methods:{
+    uploadImage(e){
+      console.log(e.target.files[0]);
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+      fileReader.onload = (e)=>{
+        this.product.img = e.target.result
+      }
+      //console.log(this.product);
+    },
     insertProduct(){
-      this.$http.post('api/products' , this.product)
-      .then(res=>{
-        this.$router.push('/feed');
-      }).catch(err=>{
-        console.log(err);
+      this.$validator.validateAll()
+      .then(()=>{
+        this.$http.post('api/products' , this.product)
+          .then(res=>{
+            console.log(res);
+            this.$router.push('/feed');
+          }).catch(err=>{
+          console.log(err);
+        });
       });
+
     }
   }
 }

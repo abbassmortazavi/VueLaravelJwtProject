@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-4">
     <div class="thumbnail">
-      <img :src= product.img class="img-fluid">
+      <img :src= "'http://localhost:8000/images/' + product.img" class="img-fluid">
       <div class="caption">
         <h3>{{ product.name }}</h3>
         <p>{{ product.price }}</p>
